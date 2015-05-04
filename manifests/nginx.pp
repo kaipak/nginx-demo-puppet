@@ -1,18 +1,28 @@
-# Class to install nginx and listen on port 2718
+# Class to install nginx and listen on port 8000
 
-class puppet-challenge::nginx {
+class puppet-challenge::nginx( $nginx_conf = '/etc/nginx/sites-available/puppet-nginx.conf' ) {
+
   package { 'nginx':
-    ensure  => 'present',
+    ensure  => 'installed',
     require => Exec['apt-get-update'],
   }
   
-#  file { '/etc/nginx/nginx.conf':
-#    ensure => 'present',
-#    source => 'puppet:///modules/puppet-challenge/nginx.conf'
-#  }
+  file { $nginx_conf:
+    ensure => 'present',
+    source => 'puppet:///modules/puppet-challenge/puppet-nginx.conf',
+    require => Package['nginx'],
+  }
     
   exec { 'apt-get-update':
     command => "apt-get update",
     path => [ '/usr/bin', '/bin' ],
   }
+  
+  service { 'nginx':
+    ensure => 'running',
+    enable => 'true',
+    require => Package['nginx'],
+    subscribe => File[$nginx_conf],
+  }
 }
+
