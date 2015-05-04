@@ -6,10 +6,10 @@ class puppet-challenge::nginx {
     require => Exec['apt-get-update'],
   }
   
-  file { '/etc/nginx/nginx.conf':
-    ensure => 'present',
-    source => 'puppet:///modules/puppet-challenge/nginx.conf'
-  }
+#  file { '/etc/nginx/nginx.conf':
+#    ensure => 'present',
+#    source => 'puppet:///modules/puppet-challenge/nginx.conf'
+#  }
     
   exec { 'apt-get-update':
     command => "apt-get update",
