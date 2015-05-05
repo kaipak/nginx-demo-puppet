@@ -1,3 +1,4 @@
 class puppet-challenge {
-  include puppet-challenge::nginx
+    class { '::puppet-challenge::nginx': } 
+    class { '::puppet-challenge::getindex': }
 }

@@ -1,1 +1,1 @@
-include nginx
+include puppet-challenge
