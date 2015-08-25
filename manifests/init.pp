@@ -20,7 +20,7 @@ class nginx_puppet_demo (
   }
 
   wget::fetch { "Puppet Index":
-    source      => 'https://raw.githubusercontent.com/kaipak/exercise-webpage/master/index.html',
+    source      => 'https://raw.githubusercontent.com/kaipak/exercise-webpage/development/index.html',
     destination => "${www_root}/index.html",
     timeout     => 0,
     verbose     => true,
