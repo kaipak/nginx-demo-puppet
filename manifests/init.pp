@@ -20,7 +20,7 @@ class nginx_puppet_demo (
   }
 
   exec { 'wget web content':
-    command => "/usr/bin/wget -O ${www_root}/index.html https://raw.githubusercontent.com/kaipak/exercise-webpage/test/index.html",
+    command => "/usr/bin/wget -O ${www_root}/index.html https://raw.githubusercontent.com/kaipak/exercise-webpage/production/index.html",
   }
 
 
