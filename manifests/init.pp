@@ -19,17 +19,8 @@ class nginx_puppet_demo (
     require   => Package['nginx'],
   }
 
-#  wget::fetch { "Puppet Index":
-#    source      => 'https://raw.githubusercontent.com/kaipak/exercise-webpage/development/index.html',
-#    destination => "${www_root}/index.html",
-#    timeout     => 0,
-#    verbose     => true,
-#    require     => File[$www_root],
-#  }
-
   exec { 'wget web content':
     command => "/usr/bin/wget -O ${www_root}/index.html https://raw.githubusercontent.com/kaipak/exercise-webpage/development/index.html",
-    creates => "${www_root}/index.html",
   }
 
 
