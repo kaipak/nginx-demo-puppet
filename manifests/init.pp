@@ -14,14 +14,21 @@ class nginx_puppet_demo (
     www_root     => $www_root,
   }
 
-  file { "$www_root":
+  file { $www_root:
     ensure    => 'directory',
     require   => Package['nginx'],
   }
 
-  exec { 'wget web content':
-    command => "/usr/bin/wget -O ${www_root}/index.html https://raw.githubusercontent.com/kaipak/exercise-webpage/production/index.html",
+  #exec { 'wget web content':
+  #  command => "/usr/bin/wget -O ${www_root}/index.html https://raw.githubusercontent.com/kaipak/exercise-webpage/development/index.html",
+  #}
+
+  file { "${www_root}/index.html":
+    ensure  => file,
+    source  => "puppet:///modules/nginx_puppet_demo/index.html",
+    require => File[$www_root],
   }
+
 
 
   firewall { '100 allow connections to specified web service':
